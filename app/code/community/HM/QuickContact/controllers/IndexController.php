@@ -28,7 +28,7 @@ class HM_QuickContact_IndexController extends Mage_Core_Controller_Front_Action
 					exit; 
                 }
 
-                if (!Zend_Validate::is(trim($post['content']) , 'NotEmpty')) {
+                if (!Zend_Validate::is(trim($post['comment']) , 'NotEmpty')) {
                     echo '<div class="error-msg">'.Mage::helper('contacts')->__('Please fill in required fields.').'</div>';
 					exit; 
                 }
@@ -38,8 +38,8 @@ class HM_QuickContact_IndexController extends Mage_Core_Controller_Front_Action
 					exit; 
                 }
 				
-				if (!isset($postObject['phone']) || strlen($postObject['phone'])<1) {
-					$postObject['phone'] = '';
+				if (!isset($postObject['telephone']) || strlen($postObject['telephone'])<1) {
+					$postObject['telephone'] = '';
 				}		
 				
                		

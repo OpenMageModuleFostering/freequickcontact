@@ -67,12 +67,12 @@
 				<div class="input">
 					<input class="input-text textbox" value="<?php if(Mage::helper('customer')->isLoggedIn()) echo Mage::getSingleton('customer/session', array('name'=>'frontend'))->getCustomer()->getName()?>" type="text" name="name" id="name"/>
 					<input class="input-text textbox" value="<?php if(Mage::helper('customer')->isLoggedIn()) echo Mage::getSingleton('customer/session', array('name'=>'frontend'))->getCustomer()->getEmail()?>" type="text" name="email" id="email"/>
-					<input class="input-text textbox" type="text" name="phone" id="phone" value=""/>			
+					<input class="input-text textbox" type="text" name="telephone" id="telephone" value=""/>			
 				</div>
 				<div style="clear:both"><span></span></div>
 				<div class="text-area">
-					<p class="hm_content"><?php echo Mage::helper('quickcontact')->__('Content')?> <span style="color:#ff0000;">*</span></p>
-					<textarea name="content" id="content" class="input-text" rows="10" cols="64"></textarea>      
+					<p class="hm_content"><?php echo Mage::helper('quickcontact')->__('Comment')?> <span style="color:#ff0000;">*</span></p>
+					<textarea name="comment" id="comment" class="input-text" rows="10" cols="64"></textarea>      
 				</div>
 					
 				<div class="submit">                
