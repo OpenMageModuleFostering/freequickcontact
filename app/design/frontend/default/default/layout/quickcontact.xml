@@ -11,15 +11,8 @@
     </quickcontact_index_index>	 
 	
 	<default>
-		<reference name="head">
-			<action method="addJs"><script>quickContact/jquery.js</script></action>
-			<action method="addJs"><script>quickContact/jquery_noconflict.js</script></action>
-			<action method="addJs"><script>quickContact/modalwindow.js</script></action>
-			<action method="addJs"><script>quickContact/quickContact.js</script></action>				
-		</reference>
-
-		<reference name="content">			
-				<block type="core/template" name="quickcontactForm" template="quickcontact/form.phtml"/>			
+		<reference name="root">			
+				<block type="core/template" template="quickcontact/form.phtml"/>			
 		</reference>
 	</default>
 </layout>

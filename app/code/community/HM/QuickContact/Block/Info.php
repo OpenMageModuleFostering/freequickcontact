@@ -34,7 +34,7 @@ class HM_QuickContact_Block_Info extends Mage_Adminhtml_Block_System_Config_Form
 
 	protected function _getFieldHtml($fieldset)
     {
-		$content = 'Free Quick Contact v1.1. <a href="http://www.hello-magento.com/quick-contact-extension-for-magento">Click here</a> to purchase full features version.';
+		$content = '<a href="http://hello-magento.com/">Quick Contact</a>';
 		return $content;
     }
 }

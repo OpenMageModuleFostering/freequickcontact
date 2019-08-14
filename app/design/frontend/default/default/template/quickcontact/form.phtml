@@ -1,6 +1,11 @@
+<script>$_SKIN_URL = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN).'frontend/default/default/';?>';</script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'js/quickContact/jquery.js'?>" type="text/javascript"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'js/quickContact/jquery_noconflict.js'?>" type="text/javascript"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'js/quickContact/modalwindow.js'?>" type="text/javascript"></script>
+<script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'js/quickContact/quickContact.js'?>" type="text/javascript"></script>
 <style>
 #mask {
-  position:absolute;
+  position:fixed;
   left:0;
   top:0;
   z-index:9000;
@@ -25,6 +30,8 @@
   min-width:500px;
 }
 .docklink{
+  display: block;
+  height: 15px;
   padding: 16px 43px 84px 0;
   background:url('<?php echo $this->getSkinUrl('quickcontact/images/btn_feedback.png')?>') no-repeat;
 }
@@ -44,107 +51,30 @@
 	
 	<div id="dialog" class="window">	
 		
-		<script>$_SKIN_URL = '<?php echo $this->getSkinUrl();?>';</script>
+		
 						
 		<div class="form-quick-contact">
         <div style="padding-right:30px;">
-		
-		<div class="title"><h1 id="quick_contact_title"><?php echo Mage::getStoreConfig("quickcontact/email/default_title") ?></h1></div>
+		<div class="title" style="padding-bottom:30px;"><h1 id="quick_contact_title">Contact Us</h1></div>
 		<form action="<?php echo $this->getUrl('quickcontact/index/post'); ?>" method="post" name="contactform" id="contactform">
-				<input type="hidden" id="page_title" name="page_title" value="<?php echo $this->getLayout()->getBlock('head')->getTitle(); ?>"/>
-				<input type="hidden" id="page_link" name="page_link" value="<?php echo Mage::helper('core/url')->getCurrentUrl() ;?>"/>
-								
-				<?php $allows = Mage::getStoreConfig("quickcontact/email/allow_fields"); ?>
-				
-				<input type="hidden" id="send_email_to" name="send_email_to" value="">
-				<input type="hidden" name="contact_type_title" id="contact_type_title" value="">
-				<script language="javascript">											
-					function changeEmail(email,type){
-						document.getElementById('send_email_to').value = email;
-						document.getElementById('contact_type_title').value = type;
-					}
-					function changeTitle(value){
-						document.getElementById('quick_contact_title').innerHTML = value;
-					}
-				</script>
-				<?php 
-					if (strstr($allows,'contact_type')!='' && Mage::getStoreConfig("quickcontact/email/contact_type_ua_regexp")):
-						$contact_types = unserialize(Mage::getStoreConfig("quickcontact/email/contact_type_ua_regexp"));						
-				?>				
-				 
-				<div class="radio">
-					<ul>
-					<?php
-						$i=0; foreach ($contact_types as $contact_type):
-							if ($i==0):
-							?>
-							<script>
-								em = '<?php echo $contact_type['email']?>';
-								tp = '<?php echo $contact_type['type']?>';
-							</script>
-							<?php endif; ?>
-							<li class="radio-box"><input class="radio-check" type="radio" id="contact_type<?php echo $i; ?>" name="contact_type" value="<?php echo $contact_type['title']?>" onchange="changeEmail('<?php echo $contact_type['email']?>','<?php echo $contact_type['type']?>');changeTitle(this.value);">
-								<label for="contact_type<?php echo $i; ?>"><?php echo $contact_type['type']?></label></li>													
-					<?php
-							$i++;
-						endforeach;					
-					?>
-					</ul>
-				</div>
-				<br/>
-				<script language="javascript">	
-					document.getElementById('contact_type0').checked = true;
-					changeEmail(em,tp);
-					changeTitle(document.getElementById('contact_type0').value);	
-				</script>
-				<?php endif; ?>
-    	       	
 				
 				<div class="text"> 
-					<div class="info-txt"> Your Name <span style="color:#ff0000;">*</span></div>
-					<div class="info-txt"> Your Email <span style="color:#ff0000;">*</span></div>
-					<div class="info-txt" <?php if (strstr($allows,'phone')=='') echo ' style="display:none; "' ?>> Your Phone </div>
-					<div class="info-txt" <?php if (strstr($allows,'subject')=='') echo ' style="display:none; "' ?>> Subject </div>
+					<div class="info-txt"> <?php echo Mage::helper('quickcontact')->__('Your Name')?> <span style="color:#ff0000;">*</span></div>
+					<div class="info-txt"> <?php echo Mage::helper('quickcontact')->__('Your Email')?> <span style="color:#ff0000;">*</span></div>
+					<div class="info-txt"> <?php echo Mage::helper('quickcontact')->__('Your Phone')?> </div>
 				</div>
 								
 				<div class="input">
 					<input class="input-text textbox" value="<?php if(Mage::helper('customer')->isLoggedIn()) echo Mage::getSingleton('customer/session', array('name'=>'frontend'))->getCustomer()->getName()?>" type="text" name="name" id="name"/>
 					<input class="input-text textbox" value="<?php if(Mage::helper('customer')->isLoggedIn()) echo Mage::getSingleton('customer/session', array('name'=>'frontend'))->getCustomer()->getEmail()?>" type="text" name="email" id="email"/>
-					<input class="input-text textbox" type="<?php echo strstr($allows,'phone')?'text':'hidden' ?>" name="phone" id="phone" value=""/>
-					<input class="input-text textbox" style="width:440px" type="<?php echo strstr($allows,'subject')?'text':'hidden' ?>" name="subject" id="subject" value=""/>
+					<input class="input-text textbox" type="text" name="phone" id="phone" value=""/>			
 				</div>
 				<div style="clear:both"><span></span></div>
 				<div class="text-area">
-					<p class="hm_content">Content <span style="color:#ff0000;">*</span></p>
-					<textarea name="content" id="content" class="input-text" rows="10" cols="64"></textarea>        
+					<p class="hm_content"><?php echo Mage::helper('quickcontact')->__('Content')?> <span style="color:#ff0000;">*</span></p>
+					<textarea name="content" id="content" class="input-text" rows="10" cols="64"></textarea>      
 				</div>
-				
-				<?php if (!Mage::helper('customer')->isLoggedIn()): ?>
-					<?php if (Mage::getStoreConfig("quickcontact/recaptcha/enabled")==true): ?>
-					<div class="capcha"><div class="label"><span>Security Code <span style="color:#ff0000;">*</span></span> <input class="input-text textbox" type="text" id="security_code" name="security_code"/></div>
-						<?php 					
-							$im = imagecreate(60, 20);
-							$bg = imagecolorallocate($im, 0 , 0, 0); 
-							$textcolor = imagecolorallocate($im, 255, 255, 255);
-							$random=rand(1000,9999);
-							imagestring($im, 10, 10, 2, $random , $textcolor);
-							$filenametemp="gif".time().".gif";
-							ImageGIF($im, $filenametemp); 
-							$ImageData = file_get_contents($filenametemp); 
-							$ImageDataEnc = base64_encode($ImageData); 
-							unlink($filenametemp);		
-						?>
-						<img id="security_image" src="data:image/gif;base64,<?php echo $ImageDataEnc?>">
-						<input type="hidden" name="codemd5" id="codemd5" value="<?php echo md5($random)?>"/>
-
-					</div>
-					<?php else: ?>
-						<input type="hidden" name="codemd5" id="codemd5" value=""/>
-					<?php endif; ?>
-				<?php else: ?>
-					<input type="hidden" name="codemd5" id="codemd5" value=""/>
-				<?php endif; ?>
-          		  
+					
 				<div class="submit">                
                 <input id="submit" type="image" src="<?php echo $this->getSkinUrl('quickcontact/images/submit.jpg')?>"> <a href="#" class="close"><img src="<?php echo $this->getSkinUrl('quickcontact/images/close.jpg')?>" /></a> </div>  
 				
@@ -157,10 +87,6 @@
 	
 	
 </div>
-<script type="text/javascript">
-var contactform = new VarienForm('contactform', true);
-</script>
-
 
 
 

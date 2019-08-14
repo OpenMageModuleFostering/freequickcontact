@@ -23,6 +23,15 @@
                 </quickcontact>
             </updates>
         </layout>
+		<translate>
+			<modules>
+				<HM_QuickContact>
+					<files>
+						<default>HM_QuickContact.csv</default>
+					</files>
+				</HM_QuickContact>
+			</modules>
+		</translate>
     </frontend>
     <global>
 		<blocks>
@@ -61,7 +70,16 @@
         </template>
     </global>
 
-    <adminhtml>        
+    <adminhtml>     
+		<translate>
+			<modules>
+				<HM_QuickContact>
+					<files>
+						<default>HM_QuickContact.csv</default>
+					</files>
+				</HM_QuickContact>
+			</modules>
+		</translate>
         <acl>
             <resources>
                 <admin>
@@ -86,11 +104,7 @@
     <default>
         <quickcontact>            
             <email>
-				<default_title>Contact Us</default_title>
-				<default_subject>Contact Us</default_subject>
-                <recipient_email><![CDATA[hello@example.com]]></recipient_email>
-                <sender_email_identity>custom2</sender_email_identity>
-                <email_template>quickcontact_email_email_template</email_template>
+				<dock_link>1</dock_link>
             </email>
         </quickcontact>
     </default>
