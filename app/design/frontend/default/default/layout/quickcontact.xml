@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <quickcontact_index_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/one-column.phtml</template></action>
+            <action method="setHeaderTitle" translate="title" module="contacts"><title>Contact Us</title></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="quickcontactForm" as="quickcontactForm" template="quickcontact/form.phtml"/>
+        </reference>
+    </quickcontact_index_index>	 
+	
+	<default>
+		<reference name="head">
+			<action method="addJs"><script>quickContact/jquery.js</script></action>
+			<action method="addJs"><script>quickContact/jquery_noconflict.js</script></action>
+			<action method="addJs"><script>quickContact/modalwindow.js</script></action>
+			<action method="addJs"><script>quickContact/quickContact.js</script></action>				
+		</reference>
+
+		<reference name="content">			
+				<block type="core/template" name="quickcontactForm" template="quickcontact/form.phtml"/>			
+		</reference>
+	</default>
+</layout>
