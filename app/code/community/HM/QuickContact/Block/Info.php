@@ -34,7 +34,7 @@ class HM_QuickContact_Block_Info extends Mage_Adminhtml_Block_System_Config_Form
 
 	protected function _getFieldHtml($fieldset)
     {
-		$content = '<a href="http://hello-magento.com/">Quick Contact</a>';
+		$content = 'This extension is developed by <a href="http://mage-world.com/">Mage-World.com</a>';
 		return $content;
     }
 }

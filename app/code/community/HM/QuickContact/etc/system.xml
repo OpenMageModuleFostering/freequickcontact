@@ -27,15 +27,15 @@
 -->
 <config>
 	<tabs>
-        <hellomagento translate="label">
-            <label>Hello Magento</label>
-            <sort_order>300</sort_order>
-        </hellomagento>
+        <mage_world translate="label">
+            <label>Mage World</label>
+            <sort_order>250</sort_order>
+        </mage_world>
     </tabs>
     <sections>
         <quickcontact translate="label" module="quickcontact">
             <label>Quick Contact</label>
-            <tab>hellomagento</tab>
+            <tab>mage_world</tab>
             <frontend_type>text</frontend_type>
             <sort_order>100</sort_order>
             <show_in_default>1</show_in_default>
