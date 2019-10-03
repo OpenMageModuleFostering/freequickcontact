@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/FreeQuickContact",
+    "name": "OpenMageModuleFostering\/FreeQuickContact",
     "type": "magento-module",
     "license": "Open-Software-License-(OSL)",
     "homepage": "",
     "description": "Quick Contact - Free Frontend Version",
     "authors": [
-    {
-        "name": "Hai NGUYEN",
-        "email": "haint@hello-magento.com"
-    }
-],
+        {
+            "name": "Hai NGUYEN",
+            "email": "haint@hello-magento.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
