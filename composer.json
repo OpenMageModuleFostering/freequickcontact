@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/FreeQuickContact",
+    "name": "openmage-module-fostering\/freequickcontact",
     "type": "magento-module",
-    "license": "Open-Software-License-(OSL)",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Quick Contact - Free Frontend Version",
     "authors": [
